@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>openbouquet</groupId>
+		<groupId>io.openbouquet</groupId>
 		<artifactId>bouquet-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../bouquet-parent/pom.xml</relativePath>
@@ -49,12 +49,12 @@
 			<version>5.1.36</version>
 		</dependency>
 		<dependency>
-			<groupId>openbouquet</groupId>
+			<groupId>io.openbouquet</groupId>
 			<artifactId>bouquet-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
-	<groupId>com.squid</groupId>
+
 	<profiles>
 		<profile>
 			<id>upstream</id>
