@@ -99,7 +99,7 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
     //
     registerOperatorRender(DateTruncateOperatorDefinition.DATE_TRUNCATE, new MySQLDateTruncateOperatorRenderer());
     //
-    registerOperatorRender(IntrinsicOperators.INTRINSIC_EXTENDED_ID + "." + IntrinsicOperators.RLIKE, new RLikeOperatorRenderer());
+    registerOperatorRender(IntrinsicOperators.INTRINSIC_EXTENDED_ID + "." + IntrinsicOperators.RLIKE, new RLikeOperatorRenderer("RLIKE"));
     //
     unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_COUNT);
     unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_INSTR);
