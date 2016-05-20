@@ -24,7 +24,7 @@
 package com.squid.core.jdbc.vendor.mysql.render;
 
 import com.squid.core.domain.IDomain;
-import com.squid.core.domain.extensions.CastOperatorDefinition;
+import com.squid.core.domain.extensions.cast.CastOperatorDefinition;
 import com.squid.core.domain.operators.ExtendedType;
 import com.squid.core.domain.operators.OperatorDefinition;
 import com.squid.core.sql.db.render.CastOperatorRenderer;
