@@ -2,12 +2,12 @@
  * Copyright © Squid Solutions, 2016
  *
  * This file is part of Open Bouquet software.
- *  
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation (version 3 of the License).
  *
- * There is a special FOSS exception to the terms and conditions of the 
+ * There is a special FOSS exception to the terms and conditions of the
  * licenses as they are applied to this program. See LICENSE.txt in
  * the directory of this program distribution.
  *
@@ -37,24 +37,29 @@ import com.squid.core.sql.render.SQLSkin;
  *
  */
 public class MySQLDateTruncateOperatorRenderer extends DateTruncateOperatorRenderer {
-    
-    protected String prettyPrintTwoArgs(SQLSkin skin, OperatorPiece piece, OperatorDefinition opDef, String[] args) throws RenderingException {
-        ExtendedType[] extendedTypes = null;
-        extendedTypes = getExtendedPieces(piece);
-        if(DateTruncateOperatorDefinition.WEEK.equals(args[1].replaceAll("'", ""))) {
-            return "CAST(SUBDATE("+ args[0] +", INTERVAL weekday("+ args[0] +") DAY) as DATE)";
-        } else if(DateTruncateOperatorDefinition.MONTH.equals(args[1].replaceAll("'", ""))) {
-            return "CAST(DATE_FORMAT("+ args[0] +" ,'%Y-%m-01') as DATE)";
-        } else if(DateTruncateOperatorDefinition.YEAR.equals(args[1].replaceAll("'", ""))) {
-            return "CAST(DATE_FORMAT("+ args[0] +" ,'%Y-01-01') as DATE)";
-        } else if (extendedTypes[0].getDomain().isInstanceOf(IDomain.TIMESTAMP)) {
-            //a timestamp has to be truncated so it becomes a date
-            return "CAST(DATE_FORMAT("+ args[0] +" ,'%Y-%m-%d') as DATE)";
-        } else if (extendedTypes[0].getDomain().isInstanceOf(IDomain.DATE)) {
-            // If it is already a date, no transformation is required
-            return args[0];
-        }
-        return opDef.getSymbol() + "(" + args[0] + "," + args[1] + ")";
-    }
-    
+
+	@Override
+	protected String prettyPrintTwoArgs(SQLSkin skin, OperatorPiece piece, OperatorDefinition opDef, String[] args)
+			throws RenderingException {
+		ExtendedType[] extendedTypes = null;
+		extendedTypes = getExtendedPieces(piece);
+		if (DateTruncateOperatorDefinition.WEEK.equals(args[1].replaceAll("'", ""))) {
+			return "CAST(SUBDATE(" + args[0] + ", INTERVAL weekday(" + args[0] + ") DAY) as DATE)";
+		} else if (DateTruncateOperatorDefinition.MONTH.equals(args[1].replaceAll("'", ""))) {
+			return "CAST(DATE_FORMAT(" + args[0] + " ,'%Y-%m-01') as DATE)";
+		} else if (DateTruncateOperatorDefinition.QUARTER.equals(args[1].replaceAll("'", ""))) {
+			return "MAKEDATE(YEAR(" + args[0] + "), 1) + INTERVAL QUARTER(" + args[0]
+					+ ") QUARTER - INTERVAL 1 QUARTER";
+		} else if (DateTruncateOperatorDefinition.YEAR.equals(args[1].replaceAll("'", ""))) {
+			return "CAST(DATE_FORMAT(" + args[0] + " ,'%Y-01-01') as DATE)";
+		} else if (extendedTypes[0].getDomain().isInstanceOf(IDomain.TIMESTAMP)) {
+			// a timestamp has to be truncated so it becomes a date
+			return "CAST(DATE_FORMAT(" + args[0] + " ,'%Y-%m-%d') as DATE)";
+		} else if (extendedTypes[0].getDomain().isInstanceOf(IDomain.DATE)) {
+			// If it is already a date, no transformation is required
+			return args[0];
+		}
+		return opDef.getSymbol() + "(" + args[0] + "," + args[1] + ")";
+	}
+
 }
