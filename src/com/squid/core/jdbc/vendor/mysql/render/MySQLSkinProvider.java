@@ -43,6 +43,7 @@ import com.squid.core.domain.operators.IntrinsicOperators;
 import com.squid.core.domain.operators.OperatorDefinition;
 import com.squid.core.sql.db.features.IGroupingSetSupport;
 import com.squid.core.sql.db.features.IMetadataForeignKeySupport;
+import com.squid.core.sql.db.features.IMetadataPrimaryKeySupport;
 import com.squid.core.sql.db.render.AddMonthsAsIntervalOperatorRenderer;
 import com.squid.core.sql.db.render.DateAddSubOperatorRenderer;
 import com.squid.core.sql.db.render.DateEpochOperatorRenderer;
@@ -146,6 +147,8 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
     } else if (featureID == DataSourceReliable.FeatureSupport.AUTOCOMMIT) {
       return ISkinFeatureSupport.IS_SUPPORTED;
     } else if (featureID == IMetadataForeignKeySupport.ID) {
+		return ISkinFeatureSupport.IS_SUPPORTED;
+	} else if (featureID == IMetadataPrimaryKeySupport.ID) {
 		return ISkinFeatureSupport.IS_SUPPORTED;
 	}
     // else
