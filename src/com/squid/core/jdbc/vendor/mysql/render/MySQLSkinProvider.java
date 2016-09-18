@@ -32,6 +32,7 @@ import com.squid.core.domain.extensions.date.AddMonthsOperatorDefinition;
 import com.squid.core.domain.extensions.cast.CastOperatorDefinition;
 import com.squid.core.domain.extensions.date.operator.DateOperatorDefinition;
 import com.squid.core.domain.extensions.date.DateTruncateOperatorDefinition;
+import com.squid.core.domain.extensions.date.DateTruncateShortcutsOperatorDefinition;
 import com.squid.core.domain.extensions.date.extract.ExtractOperatorDefinition;
 import com.squid.core.domain.extensions.string.PosStringOperatorDefinition;
 import com.squid.core.domain.extensions.string.regex.RegexpOperatorDefinition;
@@ -100,6 +101,11 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
     registerOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.STDDEV_SAMP), new MySQLVarStdevRenderer());
     //
     registerOperatorRender(DateTruncateOperatorDefinition.DATE_TRUNCATE, new MySQLDateTruncateOperatorRenderer());
+    registerOperatorRender(DateTruncateShortcutsOperatorDefinition.HOURLY_ID, new MySQLDateTruncateOperatorRenderer());
+    registerOperatorRender(DateTruncateShortcutsOperatorDefinition.DAILY_ID, new MySQLDateTruncateOperatorRenderer());
+    registerOperatorRender(DateTruncateShortcutsOperatorDefinition.WEEKLY_ID, new MySQLDateTruncateOperatorRenderer());
+    registerOperatorRender(DateTruncateShortcutsOperatorDefinition.MONTHLY_ID, new MySQLDateTruncateOperatorRenderer());
+    registerOperatorRender(DateTruncateShortcutsOperatorDefinition.YEARLY_ID, new MySQLDateTruncateOperatorRenderer());
     //
     registerOperatorRender(IntrinsicOperators.INTRINSIC_EXTENDED_ID + "." + IntrinsicOperators.RLIKE, new RLikeOperatorRenderer("RLIKE"));
     //
