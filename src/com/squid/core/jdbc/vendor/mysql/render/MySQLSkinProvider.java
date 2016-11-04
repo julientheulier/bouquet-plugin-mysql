@@ -105,6 +105,7 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
     registerOperatorRender(DateTruncateShortcutsOperatorDefinition.DAILY_ID, new MySQLDateTruncateOperatorRenderer());
     registerOperatorRender(DateTruncateShortcutsOperatorDefinition.WEEKLY_ID, new MySQLDateTruncateOperatorRenderer());
     registerOperatorRender(DateTruncateShortcutsOperatorDefinition.MONTHLY_ID, new MySQLDateTruncateOperatorRenderer());
+    registerOperatorRender(DateTruncateShortcutsOperatorDefinition.QUARTERLY_ID, new MySQLDateTruncateOperatorRenderer());
     registerOperatorRender(DateTruncateShortcutsOperatorDefinition.YEARLY_ID, new MySQLDateTruncateOperatorRenderer());
     //
     registerOperatorRender(IntrinsicOperators.INTRINSIC_EXTENDED_ID + "." + IntrinsicOperators.RLIKE, new RLikeOperatorRenderer("RLIKE"));
