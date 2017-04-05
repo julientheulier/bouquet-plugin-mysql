@@ -56,6 +56,7 @@ import com.squid.core.sql.db.templates.DefaultSkinProvider;
 import com.squid.core.sql.db.templates.ISkinProvider;
 import com.squid.core.sql.db.templates.SkinRegistry;
 import com.squid.core.sql.render.ISkinFeatureSupport;
+import com.squid.core.sql.render.ISkinPref;
 import com.squid.core.sql.render.SQLSkin;
 import com.squid.core.sql.render.ZeroIfNullFeatureSupport;
 import com.squid.core.sql.statements.SelectStatement;
@@ -160,6 +161,14 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 	}
     // else
     return super.getFeatureSupport(skin, featureID);
+  }
+
+  @Override
+  public ISkinPref getPreferences(DefaultJDBCSkin skin, String featureID) {
+    if (featureID == DataSourceReliable.FeatureSupport.ROLLUP) {
+      return ISkinPref.TEMP;
+    }
+    return super.getPreferences(skin, featureID);
   }
 
   private SelectStatement.SampleFeatureSupport SAMPLE_SUPPORT = new SelectStatement.SampleFeatureSupport() {
