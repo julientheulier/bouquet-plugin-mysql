@@ -3,7 +3,13 @@
 ##
 ##-- Based on: default SQL ANSI, V2.0
 ## MySQL
--- MySQL template
+-- MySQL template with create temporary table support
+##
+## INTO : emulate using create temporary table
+##
+#if ($stat.hasIntoTemporaryTable())
+CREATE TEMPORARY TABLE $skin.quoteTableIdentifier($stat.IntoTemporaryTableName) AS
+#end
 SELECT
 #if ($stat.isStyleDistinct())
 	DISTINCT

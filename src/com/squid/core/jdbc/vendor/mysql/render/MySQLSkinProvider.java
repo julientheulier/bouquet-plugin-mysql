@@ -45,6 +45,7 @@ import com.squid.core.domain.operators.OperatorDefinition;
 import com.squid.core.sql.db.features.IGroupingSetSupport;
 import com.squid.core.sql.db.features.IMetadataForeignKeySupport;
 import com.squid.core.sql.db.features.IMetadataPrimaryKeySupport;
+import com.squid.core.sql.db.features.IRollupStrategySupport;
 import com.squid.core.sql.db.render.AddMonthsAsIntervalOperatorRenderer;
 import com.squid.core.sql.db.render.DateAddSubOperatorRenderer;
 import com.squid.core.sql.db.render.DateEpochOperatorRenderer;
@@ -158,17 +159,11 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 		return ISkinFeatureSupport.IS_SUPPORTED;
 	} else if (featureID == IMetadataPrimaryKeySupport.ID) {
 		return ISkinFeatureSupport.IS_SUPPORTED;
+	} else if (featureID.equals(IRollupStrategySupport.ID)) {
+		return IRollupStrategySupport.DO_NOT_OPTIMIZE_STRATEGY;
 	}
     // else
     return super.getFeatureSupport(skin, featureID);
-  }
-
-  @Override
-  public ISkinPref getPreferences(DefaultJDBCSkin skin, String featureID) {
-    if (featureID == DataSourceReliable.FeatureSupport.ROLLUP) {
-      return ISkinPref.TEMP;
-    }
-    return super.getPreferences(skin, featureID);
   }
 
   private SelectStatement.SampleFeatureSupport SAMPLE_SUPPORT = new SelectStatement.SampleFeatureSupport() {
