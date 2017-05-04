@@ -35,6 +35,7 @@ import com.squid.core.domain.extensions.date.DateTruncateShortcutsOperatorDefini
 import com.squid.core.domain.extensions.date.extract.ExtractOperatorDefinition;
 import com.squid.core.domain.extensions.date.operator.DateOperatorDefinition;
 import com.squid.core.domain.extensions.string.PosStringOperatorDefinition;
+import com.squid.core.domain.extensions.string.SplitPartOperatorDefinition;
 import com.squid.core.domain.extensions.string.SubstringOperatorDefinition;
 import com.squid.core.domain.extensions.string.regex.RegexpOperatorDefinition;
 import com.squid.core.domain.maths.RandOperatorDefinition;
@@ -72,6 +73,7 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 		registerOperatorRender("com.sodad.domain.operator.density.EQWBUCKET", new EquiWidthBucketRenderer());
 		registerOperatorRender(PosStringOperatorDefinition.STRING_POSITION, new PosStringRenderer());
 		registerOperatorRender(SubstringOperatorDefinition.STRING_SUBSTRING, new SubStringRenderer());
+		registerOperatorRender(SplitPartOperatorDefinition.STRING_SPLIT_PART, new MySQLSplitPartOperatorRenderer());
 		registerOperatorRender(DateOperatorDefinition.DATE_MONTHS_BETWEEN, new MonthsBetweenRenderer());
 
 		registerOperatorRender(CastOperatorDefinition.TO_CHAR, new MySQLCastOperatorRenderer());
