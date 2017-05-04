@@ -28,6 +28,7 @@ import java.util.List;
 import com.squid.core.database.impl.DataSourceReliable;
 import com.squid.core.database.metadata.IMetadataEngine;
 import com.squid.core.database.model.DatabaseProduct;
+import com.squid.core.domain.extensions.JSON.JSONOperatorDefinition;
 import com.squid.core.domain.extensions.cast.CastOperatorDefinition;
 import com.squid.core.domain.extensions.date.AddMonthsOperatorDefinition;
 import com.squid.core.domain.extensions.date.DateTruncateOperatorDefinition;
@@ -112,6 +113,10 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 		registerOperatorRender(DateTruncateShortcutsOperatorDefinition.YEARLY_ID, new MySQLDateTruncateOperatorRenderer());
 		//
 		registerOperatorRender(IntrinsicOperators.INTRINSIC_EXTENDED_ID + "." + IntrinsicOperators.RLIKE, new RLikeOperatorRenderer("RLIKE"));
+		//
+		registerOperatorRender(JSONOperatorDefinition.JSON_ARRAY_LENGTH, new MySQLJSONOperatorRenderer());
+		registerOperatorRender(JSONOperatorDefinition.JSON_EXTRACT_FROM_ARRAY, new MySQLJSONOperatorRenderer());
+		registerOperatorRender(JSONOperatorDefinition.JSON_EXTRACT_PATH_TEXT, new MySQLJSONOperatorRenderer());
 		//
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_COUNT);
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_INSTR);
