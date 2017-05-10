@@ -44,6 +44,7 @@ import com.squid.core.domain.maths.SinhCoshTanhOperatorDefintion;
 import com.squid.core.domain.maths.TruncateOperatorDefintion;
 import com.squid.core.domain.operators.IntrinsicOperators;
 import com.squid.core.domain.operators.OperatorDefinition;
+import com.squid.core.domain.operators.RankOperatorDefinition;
 import com.squid.core.sql.db.features.IGroupingSetSupport;
 import com.squid.core.sql.db.features.IMetadataForeignKeySupport;
 import com.squid.core.sql.db.features.IMetadataPrimaryKeySupport;
@@ -123,6 +124,9 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_SUBSTR);
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_REPLACE);
 		unregisterOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.MEDIAN));
+	    unregisterOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.RANK));// not sure if this one is still used
+	    unregisterOperatorRender(RankOperatorDefinition.RANK_ID);
+	    unregisterOperatorRender(RankOperatorDefinition.ROWNUMBER_ID);
 
 	}
 
