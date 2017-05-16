@@ -124,9 +124,9 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_SUBSTR);
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_REPLACE);
 		unregisterOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.MEDIAN));
-	    unregisterOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.RANK));// not sure if this one is still used
-	    unregisterOperatorRender(RankOperatorDefinition.RANK_ID);
-	    unregisterOperatorRender(RankOperatorDefinition.ROWNUMBER_ID);
+		unregisterOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.RANK));// not sure if this one is still used
+		unregisterOperatorRender(RankOperatorDefinition.RANK_ID);
+		unregisterOperatorRender(RankOperatorDefinition.ROWNUMBER_ID);
 
 	}
 
