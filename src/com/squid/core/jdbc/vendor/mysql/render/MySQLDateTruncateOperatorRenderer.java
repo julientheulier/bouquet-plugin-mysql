@@ -43,14 +43,14 @@ public class MySQLDateTruncateOperatorRenderer extends DateTruncateOperatorRende
 			throws RenderingException {
 		ExtendedType[] extendedTypes = null;
 		extendedTypes = getExtendedPieces(piece);
-		if (DateTruncateOperatorDefinition.WEEK.equals(args[1].replaceAll("'", ""))) {
+		if (DateTruncateOperatorDefinition.WEEK.equalsIgnoreCase(args[1].replaceAll("'", ""))) {
 			return "CAST(SUBDATE(" + args[0] + ", INTERVAL weekday(" + args[0] + ") DAY) as DATE)";
 		} else if (DateTruncateOperatorDefinition.MONTH.equals(args[1].replaceAll("'", ""))) {
 			return "CAST(DATE_FORMAT(" + args[0] + " ,'%Y-%m-01') as DATE)";
-		} else if (DateTruncateOperatorDefinition.QUARTER.equals(args[1].replaceAll("'", ""))) {
+		} else if (DateTruncateOperatorDefinition.QUARTER.equalsIgnoreCase(args[1].replaceAll("'", ""))) {
 			return "MAKEDATE(YEAR(" + args[0] + "), 1) + INTERVAL QUARTER(" + args[0]
 					+ ") QUARTER - INTERVAL 1 QUARTER";
-		} else if (DateTruncateOperatorDefinition.YEAR.equals(args[1].replaceAll("'", ""))) {
+		} else if (DateTruncateOperatorDefinition.YEAR.equalsIgnoreCase(args[1].replaceAll("'", ""))) {
 			return "CAST(DATE_FORMAT(" + args[0] + " ,'%Y-01-01') as DATE)";
 		} else if (extendedTypes[0].getDomain().isInstanceOf(IDomain.TIMESTAMP)) {
 			// a timestamp has to be truncated so it becomes a date
