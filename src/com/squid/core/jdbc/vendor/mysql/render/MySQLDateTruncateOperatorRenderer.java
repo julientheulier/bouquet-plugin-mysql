@@ -45,7 +45,7 @@ public class MySQLDateTruncateOperatorRenderer extends DateTruncateOperatorRende
 		extendedTypes = getExtendedPieces(piece);
 		if (DateTruncateOperatorDefinition.WEEK.equalsIgnoreCase(args[1].replaceAll("'", ""))) {
 			return "CAST(SUBDATE(" + args[0] + ", INTERVAL weekday(" + args[0] + ") DAY) as DATE)";
-		} else if (DateTruncateOperatorDefinition.MONTH.equals(args[1].replaceAll("'", ""))) {
+		} else if (DateTruncateOperatorDefinition.MONTH.equalsIgnoreCase(args[1].replaceAll("'", ""))) {
 			return "CAST(DATE_FORMAT(" + args[0] + " ,'%Y-%m-01') as DATE)";
 		} else if (DateTruncateOperatorDefinition.QUARTER.equalsIgnoreCase(args[1].replaceAll("'", ""))) {
 			return "MAKEDATE(YEAR(" + args[0] + "), 1) + INTERVAL QUARTER(" + args[0]
@@ -55,6 +55,8 @@ public class MySQLDateTruncateOperatorRenderer extends DateTruncateOperatorRende
 		} else if (extendedTypes[0].getDomain().isInstanceOf(IDomain.TIMESTAMP)) {
 			// a timestamp has to be truncated so it becomes a date
 			return "CAST(DATE_FORMAT(" + args[0] + " ,'%Y-%m-%d') as DATE)";
+		} else if (DateTruncateOperatorDefinition.DAY.equalsIgnoreCase(args[1].replaceAll("'", ""))) {
+			return "CAST(" + args[0] + " as DATE)";
 		} else if (extendedTypes[0].getDomain().isInstanceOf(IDomain.DATE)) {
 			// If it is already a date, no transformation is required
 			return args[0];
