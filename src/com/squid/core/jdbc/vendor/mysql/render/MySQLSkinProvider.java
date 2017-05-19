@@ -100,7 +100,7 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 		registerOperatorRender(AddMonthsOperatorDefinition.ADD_MONTHS, new AddMonthsAsIntervalOperatorRenderer());
 		//
 		registerOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.AVG), new MySQLAvgRenderer());
-		registerOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.VARIANCE), new MySQLVarStdevRenderer());
+		registerOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.VAR_POP), new MySQLVarStdevRenderer());
 		registerOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.VAR_SAMP), new MySQLVarStdevRenderer());
 		registerOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.STDDEV_POP), new MySQLVarStdevRenderer());
 		registerOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.STDDEV_SAMP), new MySQLVarStdevRenderer());
