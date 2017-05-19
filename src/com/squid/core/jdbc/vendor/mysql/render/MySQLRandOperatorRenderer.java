@@ -2,12 +2,12 @@
  * Copyright © Squid Solutions, 2016
  *
  * This file is part of Open Bouquet software.
- *  
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation (version 3 of the License).
  *
- * There is a special FOSS exception to the terms and conditions of the 
+ * There is a special FOSS exception to the terms and conditions of the
  * licenses as they are applied to this program. See LICENSE.txt in
  * the directory of this program distribution.
  *
@@ -33,17 +33,18 @@ import com.squid.core.sql.render.SQLSkin;
  * @author loivd
  * Random function
  */
-public class  MySQLRandOperatorRenderer 
+public class  MySQLRandOperatorRenderer
 extends BaseOperatorRenderer
 {
 	public  MySQLRandOperatorRenderer() {
 	}
 
+	@Override
 	public String prettyPrint(SQLSkin skin, OperatorDefinition opDef, String[] args) throws RenderingException {
 		if (args.length==0){
 			return "RAND()";
 		}else if (args.length == 2) {
-			String str = "FLOOR(low_bound  + RAND() * (hight_bound � low_bound + 1))";
+			String str = "FLOOR(low_bound  + RAND() * (hight_bound - low_bound + 1))";
 			str = str.replace("low_bound", args[0]);
 			str = str.replace("hight_bound", args[1]);
 			return str;
