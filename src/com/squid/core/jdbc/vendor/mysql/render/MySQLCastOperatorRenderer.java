@@ -2,12 +2,12 @@
  * Copyright © Squid Solutions, 2016
  *
  * This file is part of Open Bouquet software.
- *  
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation (version 3 of the License).
  *
- * There is a special FOSS exception to the terms and conditions of the 
+ * There is a special FOSS exception to the terms and conditions of the
  * licenses as they are applied to this program. See LICENSE.txt in
  * the directory of this program distribution.
  *
@@ -79,7 +79,7 @@ extends CastOperatorRenderer {
 			}
 		} else {
 			return super.prettyPrintTwoArgs(skin, piece, opDef, args);
-		}		
+		}
 	}
 	@Override
 	protected String prettyPrintSingleArg(SQLSkin skin, OperatorDefinition opDef, OperatorPiece piece, String[] args) throws RenderingException {
@@ -91,11 +91,11 @@ extends CastOperatorRenderer {
 			txt += "DATE)";
 		} else if (CastOperatorDefinition.TO_CHAR.equals(opDef.getExtendedID())){
 			//length is optional on mysql
-			txt = "CHAR(";
-			txt+= ((CastOperatorDefinition)opDef).getPieceLength(getExtendedPieces(piece))+"))";
+			txt += "CHAR(";
+			txt += ((CastOperatorDefinition)opDef).getPieceLength(getExtendedPieces(piece))+"))";
 		} else if (CastOperatorDefinition.TO_NUMBER.equals(opDef.getExtendedID())){
 			if (args.length==1) {
-//				txt = "(" + args[0] + " + 0.0)";
+				//				txt = "(" + args[0] + " + 0.0)";
 				txt +="DECIMAL(65,30))";
 			} else if (args.length==3) {
 				txt +="DECIMAL("+args[1]+","+args[2]+"))";
@@ -105,7 +105,7 @@ extends CastOperatorRenderer {
 		}
 		return txt;
 	}
-	
+
 	public String formatMapping(String format) {
 		//Handle 2 or 4 year digits format properly
 		if (format.toLowerCase().indexOf("yyyy")!=-1) {
