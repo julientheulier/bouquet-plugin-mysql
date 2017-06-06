@@ -2,12 +2,12 @@
  * Copyright © Squid Solutions, 2016
  *
  * This file is part of Open Bouquet software.
- *  
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation (version 3 of the License).
  *
- * There is a special FOSS exception to the terms and conditions of the 
+ * There is a special FOSS exception to the terms and conditions of the
  * licenses as they are applied to this program. See LICENSE.txt in
  * the directory of this program distribution.
  *
@@ -50,7 +50,7 @@ public class MySQLSkin extends DefaultJDBCSkin {
 
 	@Override
 	protected void initFormat() {
-		super.initFormat();	
+		super.initFormat();
 		// use backtick "`" by default
 		setIdentifier_quote("`");
 		setLiteral_quote("\'");
@@ -111,38 +111,38 @@ public class MySQLSkin extends DefaultJDBCSkin {
 			return "NULL";
 		}
 		switch (type.getDataType()) {
-		case Types.BIT:
-		case Types.INTEGER:
-		case Types.SMALLINT:
-		case Types.BIGINT:
-		case Types.FLOAT:
-		case Types.DOUBLE:
-		case Types.DATE:
-		case Types.TIME:
-		case Types.TIMESTAMP:
-			return type.getName();
-		case CustomTypes.INTERVAL:
-			return "INTEGER";
-		case Types.TINYINT:
-			return "SMALLINT";
-		default:
-			if (type.getName().equalsIgnoreCase("nvarchar")) {
-				return "VARCHAR("+type.getSize()+")";
-			} else if (type.getName().equalsIgnoreCase("nchar")) {
-				return "CHAR("+type.getSize()+")";
-			} else if (type.getName().equalsIgnoreCase("text")) {
-				return "TEXT";
-			}
-			return super.getTypeDefinition(type);
+			case Types.BIT:
+			case Types.INTEGER:
+			case Types.SMALLINT:
+			case Types.BIGINT:
+			case Types.FLOAT:
+			case Types.DOUBLE:
+			case Types.DATE:
+			case Types.TIME:
+			case Types.TIMESTAMP:
+				return type.getName();
+			case CustomTypes.INTERVAL:
+				return "INTEGER";
+			case Types.TINYINT:
+				return "SMALLINT";
+			default:
+				if (type.getName().equalsIgnoreCase("nvarchar")) {
+					return "VARCHAR("+type.getSize()+")";
+				} else if (type.getName().equalsIgnoreCase("nchar")) {
+					return "CHAR("+type.getSize()+")";
+				} else if (type.getName().equalsIgnoreCase("text")) {
+					return "TEXT";
+				}
+				return super.getTypeDefinition(type);
 		}
 	}
-	
+
 	@Override
 	public String render(SQLSkin skin, OperatorPiece piece, OperatorDefinition opDef, String[] args) throws RenderingException {
 		if (opDef.getId()==IntrinsicOperators.MODULO) {
 			return opDef.prettyPrint("MOD", OperatorDefinition.PREFIX_POSITION, args, true);
 		} else if (opDef.getId()==IntrinsicOperators.CONCAT) {
-			return opDef.prettyPrint("||", OperatorDefinition.INFIX_POSITION, args, true);
+			return opDef.prettyPrint("CONCAT", OperatorDefinition.PREFIX_POSITION, args, true);
 		} else {
 			return super.render(skin, piece, opDef, args);
 		}
@@ -160,5 +160,5 @@ public class MySQLSkin extends DefaultJDBCSkin {
 	public String quoteComment(String text) {
 		return "\n/*\n"+comment(text)+"\n*/\n";
 	}
-	
+
 }
