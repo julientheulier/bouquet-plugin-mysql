@@ -119,6 +119,9 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 		registerOperatorRender(JSONOperatorDefinition.JSON_EXTRACT_FROM_ARRAY, new MySQLJSONOperatorRenderer());
 		registerOperatorRender(JSONOperatorDefinition.JSON_EXTRACT_PATH_TEXT, new MySQLJSONOperatorRenderer());
 		//
+		
+		registerOperatorRender("com.squid.domain.operators.extension.LOG", new MySQLLogOperatorRenderer() );
+		
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_COUNT);
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_INSTR);
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_SUBSTR);
@@ -127,6 +130,7 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 		unregisterOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.RANK));// not sure if this one is still used
 		unregisterOperatorRender(RankOperatorDefinition.RANK_ID);
 		unregisterOperatorRender(RankOperatorDefinition.ROWNUMBER_ID);
+		
 
 	}
 
