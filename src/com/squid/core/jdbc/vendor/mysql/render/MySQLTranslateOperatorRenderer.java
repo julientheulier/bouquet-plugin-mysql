@@ -50,7 +50,7 @@ extends BaseOperatorRenderer
 					"Have not supported function TRANSLATE with " + args.length
 					+ parameter);
 		}
-		if ((args[1].length() != args[2].length()) || piece.getParams()[1] instanceof SimpleConstantValuePiece || piece.getParams()[2] instanceof SimpleConstantValuePiece) {
+		if ((args[1].length() != args[2].length()) || !(piece.getParams()[1] instanceof SimpleConstantValuePiece) || !(piece.getParams()[2] instanceof SimpleConstantValuePiece)) {
 			throw new RenderingException(
 					"Replacement string & replaced string must have the same number of characters");
 
