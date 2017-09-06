@@ -39,6 +39,7 @@ import com.squid.core.domain.extensions.string.PosStringOperatorDefinition;
 import com.squid.core.domain.extensions.string.SplitPartOperatorDefinition;
 import com.squid.core.domain.extensions.string.SubstringOperatorDefinition;
 import com.squid.core.domain.extensions.string.regex.RegexpOperatorDefinition;
+import com.squid.core.domain.extensions.string.translate.TranslateOperatorDefinition;
 import com.squid.core.domain.maths.RandOperatorDefinition;
 import com.squid.core.domain.maths.SinhCoshTanhOperatorDefintion;
 import com.squid.core.domain.maths.TruncateOperatorDefintion;
@@ -91,6 +92,7 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 		registerOperatorRender(DateOperatorDefinition.FROM_UNIXTIME, new MySQLDateEpochOperatorRenderer(DateEpochOperatorRenderer.FROM));
 		registerOperatorRender(DateOperatorDefinition.TO_UNIXTIME, new MySQLDateEpochOperatorRenderer(DateEpochOperatorRenderer.TO));
 		//
+		registerOperatorRender(TranslateOperatorDefinition.STRING_TRANSLATE, new MySQLTranslateOperatorRenderer());
 		registerOperatorRender(TruncateOperatorDefintion.TRUNCATE, new MySQLTruncateOperatorRenderer());
 		registerOperatorRender(RandOperatorDefinition.RAND, new MySQLRandOperatorRenderer());
 		registerOperatorRender(SinhCoshTanhOperatorDefintion.SINH, new MySQLPosgresSinhOperatorRenderer());
@@ -119,9 +121,9 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 		registerOperatorRender(JSONOperatorDefinition.JSON_EXTRACT_FROM_ARRAY, new MySQLJSONOperatorRenderer());
 		registerOperatorRender(JSONOperatorDefinition.JSON_EXTRACT_PATH_TEXT, new MySQLJSONOperatorRenderer());
 		//
-		
+
 		registerOperatorRender("com.squid.domain.operators.extension.LOG", new MySQLLogOperatorRenderer() );
-		
+
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_COUNT);
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_INSTR);
 		unregisterOperatorRender(RegexpOperatorDefinition.REGEXP_SUBSTR);
@@ -130,7 +132,7 @@ public class MySQLSkinProvider extends DefaultSkinProvider {
 		unregisterOperatorRender(OperatorDefinition.getExtendedId(IntrinsicOperators.RANK));// not sure if this one is still used
 		unregisterOperatorRender(RankOperatorDefinition.RANK_ID);
 		unregisterOperatorRender(RankOperatorDefinition.ROWNUMBER_ID);
-		
+
 
 	}
 
