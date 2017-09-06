@@ -50,7 +50,7 @@ extends BaseOperatorRenderer
 					"Have not supported function TRANSLATE with " + args.length
 					+ parameter);
 		}
-		if ((args[1].length() != args[2].length()) || piece.getParams()[1] instanceof SimpleConstantValuePiece || piece.getParams()[2] instanceof SimpleConstantValuePiece) {
+		if ((args[1].length() != args[2].length()) || !(piece.getParams()[1] instanceof SimpleConstantValuePiece) || !(piece.getParams()[2] instanceof SimpleConstantValuePiece)) {
 			throw new RenderingException(
 					"Replacement string & replaced string must have the same number of characters");
 
@@ -58,8 +58,8 @@ extends BaseOperatorRenderer
 		String replaced = (String) ((SimpleConstantValuePiece) piece.getParams()[1]).getValue();
 		String replacement = (String) ((SimpleConstantValuePiece) piece.getParams()[2]).getValue();
 		String txt = args[0];
-		for (int i=0; i<args[1].length(); i++) {
-			txt = "REPLACE("+txt+",'"+replaced.substring(i, i).replaceAll("'", "''")+",'"+replacement.substring(i, i).replaceAll("'", "''")+"')";
+		for (int i=0; i<replaced.length(); i++) {
+			txt = "REPLACE("+txt+",'"+replaced.substring(i, i+1).replaceAll("'", "''")+"','"+replacement.substring(i, i+1).replaceAll("'", "''")+"')";
 		}
 		return txt;
 	}
