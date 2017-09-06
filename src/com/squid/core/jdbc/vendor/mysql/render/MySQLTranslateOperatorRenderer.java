@@ -58,7 +58,7 @@ extends BaseOperatorRenderer
 		String replaced = (String) ((SimpleConstantValuePiece) piece.getParams()[1]).getValue();
 		String replacement = (String) ((SimpleConstantValuePiece) piece.getParams()[2]).getValue();
 		String txt = args[0];
-		for (int i=0; i<args[1].length(); i++) {
+		for (int i=0; i<replaced.length(); i++) {
 			txt = "REPLACE("+txt+",'"+replaced.substring(i, i).replaceAll("'", "''")+",'"+replacement.substring(i, i).replaceAll("'", "''")+"')";
 		}
 		return txt;
