@@ -59,7 +59,7 @@ extends BaseOperatorRenderer
 		String replacement = (String) ((SimpleConstantValuePiece) piece.getParams()[2]).getValue();
 		String txt = args[0];
 		for (int i=0; i<replaced.length(); i++) {
-			txt = "REPLACE("+txt+",'"+replaced.substring(i, i+1).replaceAll("'", "''")+",'"+replacement.substring(i, i+1).replaceAll("'", "''")+"')";
+			txt = "REPLACE("+txt+",'"+replaced.substring(i, i+1).replaceAll("'", "''")+"','"+replacement.substring(i, i+1).replaceAll("'", "''")+"')";
 		}
 		return txt;
 	}
